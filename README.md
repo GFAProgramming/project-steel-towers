@@ -3,7 +3,9 @@ A Hero Tower defense game.
 
 ## Development Process
 `main`: Stable, but still in development. Requires a PR to merge to from feature branches.
+
 `feature/*`:  Where features are developed. Doesn't require PRs to it. Unstable changes can exist here.
+
 `release/[semver]`: Where releases go. Merged to *only* from `main` and only done when significant feature milestones are hit.
 
 ## Standards
