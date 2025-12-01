@@ -8,6 +8,8 @@ namespace SteelTowers.Types
         where T : INumber<T>, IMinMaxValue<T>
     {
         public event EventHandler<OnValueChangeArgs> OnValueChange;
+        public event EventHandler<OnValueChangeArgs> OnMaxChange;
+        public event EventHandler<OnValueChangeArgs> OnMinChange;
 
         public sealed class OnValueChangeArgs : EventArgs
         {
@@ -23,8 +25,18 @@ namespace SteelTowers.Types
             get => _max;
             set
             {
+                var oldMax = _max;
                 _max = value;
-                _value = T.Clamp(_value, _min, _max);
+                var delta = _max - oldMax;
+                
+                Value = T.Clamp(_value, _min, _max);
+
+                OnMaxChange?.Invoke(this,
+                    new OnValueChangeArgs()
+                    {
+                        NewValue = _max, OldValue = oldMax, Delta = delta
+                    }
+                );
             }
         }
 
@@ -34,8 +46,18 @@ namespace SteelTowers.Types
             get => _min;
             set
             {
+                var oldMin = _min;
                 _min = value;
-                _value = T.Clamp(_value, _min, _max);
+                var delta = _min - oldMin;
+                
+                Value = T.Clamp(_value, _min, _max);
+
+                OnMinChange?.Invoke(this,
+                    new OnValueChangeArgs()
+                    {
+                        NewValue = _min, OldValue = oldMin, Delta = delta
+                    }
+                );
             }
         }
 
