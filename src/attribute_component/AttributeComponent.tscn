@@ -4,3 +4,5 @@
 
 [node name="AttributeComponent" type="Node"]
 script = ExtResource("1_wkyu6")
+Max = 100.0
+Min = 10.0

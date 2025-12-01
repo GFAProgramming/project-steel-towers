@@ -7,6 +7,15 @@ namespace SteelTowers.Types
     public partial class RangedNumeric<T> :  RefCounted 
         where T : INumber<T>, IMinMaxValue<T>
     {
+        public event EventHandler<OnValueChangeArgs> OnValueChange;
+
+        public sealed class OnValueChangeArgs : EventArgs
+        {
+            public T NewValue { get; set; }
+            public T OldValue { get; set; }
+            public T Delta { get; set; }
+        }
+        
         private T _max;
 
         public T Max
@@ -34,7 +43,17 @@ namespace SteelTowers.Types
         public T Value
         {
             get => _value;
-            set => _value = T.Clamp(value, Min, Max);
+            set 
+                {
+                    var oldValue = _value;
+                    _value = T.Clamp(value, Min, Max);
+                    var delta = _value - oldValue;
+
+                    OnValueChange?.Invoke(this, 
+                        new OnValueChangeArgs()
+                            {NewValue=_value, OldValue=oldValue , Delta=delta}
+                        );
+                }
         }
 
         public RangedNumeric()
@@ -54,6 +73,7 @@ namespace SteelTowers.Types
             Min = min;
             Max = max;
         }
+
     }
 }
 

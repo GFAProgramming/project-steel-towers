@@ -35,6 +35,16 @@ namespace SteelTowers.Attribute_Component
         }
         
         private RangedNumeric<double> _value = new();
+
+        public AttributeComponent()
+        {
+            _value.OnValueChange += _On_Internal_Value_Change;
+        }
+
+        public override void _ExitTree()
+        {
+            _value.OnValueChange -= _On_Internal_Value_Change;
+        }
         
         public void SetValue(double value)
         {
@@ -42,8 +52,10 @@ namespace SteelTowers.Attribute_Component
             _value.Value = value;
             var delta = _value.Value - oldValue;
             
-            EmitSignalOnValueChange(_value.Value, oldValue, delta);
+            //EmitSignalOnValueChange(_value.Value, oldValue, delta);
             
+            //TODO make this check be done in the underlying data type not here and bootstrap up like was done for the OnValueChange signal. 
+            //TODO instead of using double.Epsilon directly, multiply it by some small value, like 4, to help with precision issues with large numbers.
             if (double.Abs(_value.Value - _value.Min) <= double.Epsilon) 
             {
                 EmitSignalOnValueMin(_value.Value, oldValue, delta);
@@ -62,8 +74,14 @@ namespace SteelTowers.Attribute_Component
         public void SetMax(double value)
         {
             var oldValue = _value.Value;
+            var oldMax = _value.Max;
+            
             _value.Max = value;
+            
             var delta = _value.Value - oldValue;
+            var deltaMax = _value.Max - oldMax;
+            
+            EmitSignalOnMaxChange(_value.Max, oldMax, deltaMax);
             
             if (double.Abs(_value.Value - _value.Max) <= double.Epsilon)
             {
@@ -79,8 +97,14 @@ namespace SteelTowers.Attribute_Component
         public void SetMin(double value)
         {
             var oldValue = _value.Value;
+            var oldMin = _value.Min;
+
             _value.Min = value;
+            
             var delta = _value.Value - oldValue;
+            var deltaMin = _value.Min - oldMin;
+            
+            EmitSignalOnMinChange(_value.Min, oldMin, deltaMin);
             
             if (double.Abs(_value.Value - _value.Min) <= double.Epsilon) 
             {
@@ -91,6 +115,14 @@ namespace SteelTowers.Attribute_Component
         public double GetMin()
         {
             return _value.Min;
+        }
+        
+        // ik gross, but i never actually use the sender param so idc.
+        // I just needed to convert the internal C# style EventHandler to a Godot Signal
+        #nullable enable
+        public void _On_Internal_Value_Change(object? sender, RangedNumeric<double>.OnValueChangeArgs args )
+        {
+            EmitSignalOnValueChange(args.NewValue, args.OldValue, args.Delta);
         }
     }
 }
