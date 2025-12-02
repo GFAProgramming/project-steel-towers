@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcuxpv8w8krl7"]
+
+[ext_resource type="Script" uid="uid://8vdefnjgkq4t" path="res://src/attribute_component/AttributeComponent.cs" id="1_wkyu6"]
+
+[node name="AttributeComponent" type="Node"]
+script = ExtResource("1_wkyu6")
+Max = 100.0
+Min = 10.0
