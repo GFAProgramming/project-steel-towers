@@ -1,0 +1,140 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfbe4qaelmubp"]
+
+[ext_resource type="Script" uid="uid://8vdefnjgkq4t" path="res://src/attribute_component/AttributeComponent.cs" id="1_gjxci"]
+[ext_resource type="Script" uid="uid://d0jvrjov7npbh" path="res://src/attribute_component/TmpAttrTest.cs" id="1_jjgf3"]
+
+[node name="TmpAttrTest" type="Node2D"]
+script = ExtResource("1_jjgf3")
+
+[node name="AttributeComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_gjxci")
+Max = 10.0
+metadata/_custom_type_script = "uid://8vdefnjgkq4t"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ControlsContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ValueControls" type="HBoxContainer" parent="CanvasLayer/ControlsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsContainer/ValueControls"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "Value:"
+horizontal_alignment = 2
+
+[node name="SubtractValue" type="Button" parent="CanvasLayer/ControlsContainer/ValueControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "-"
+
+[node name="AddValue" type="Button" parent="CanvasLayer/ControlsContainer/ValueControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "+"
+
+[node name="ValueLabel" type="Label" parent="CanvasLayer/ControlsContainer/ValueControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+text = "5"
+horizontal_alignment = 1
+
+[node name="MaxControls" type="HBoxContainer" parent="CanvasLayer/ControlsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsContainer/MaxControls"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "Max:"
+horizontal_alignment = 2
+
+[node name="SubtractMax" type="Button" parent="CanvasLayer/ControlsContainer/MaxControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "-"
+
+[node name="AddMax" type="Button" parent="CanvasLayer/ControlsContainer/MaxControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "+"
+
+[node name="MaxLabel" type="Label" parent="CanvasLayer/ControlsContainer/MaxControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+text = "5"
+horizontal_alignment = 1
+
+[node name="MinControls" type="HBoxContainer" parent="CanvasLayer/ControlsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/ControlsContainer/MinControls"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "Min:"
+horizontal_alignment = 2
+
+[node name="SubtractMin" type="Button" parent="CanvasLayer/ControlsContainer/MinControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "-"
+
+[node name="AddMin" type="Button" parent="CanvasLayer/ControlsContainer/MinControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "+"
+
+[node name="MinLabel" type="Label" parent="CanvasLayer/ControlsContainer/MinControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+text = "5"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ControlsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="EventLog" type="TextEdit" parent="CanvasLayer/ControlsContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
