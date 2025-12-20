@@ -8,5 +8,6 @@ namespace SteelTowers.Player
     [GlobalClass]
     public partial class Player : Node2D
     {
+        
     }
 }
