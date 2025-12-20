@@ -24,6 +24,15 @@ window/size/viewport_height=1080
 
 project/assembly_name="steel-towers"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/plenticons/plugin.cfg")
+
+[gdunit4]
+
+settings/test/test_lookup_folder="Tests"
+settings/test/test_discovery=true
+
 [input]
 
 left_action={
