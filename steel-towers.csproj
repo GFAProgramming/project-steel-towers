@@ -5,4 +5,11 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>steeltowers</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.1.0" />
+    <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="..\..\..\.nuget\packages\gdunit4.analyzers\1.0.0\contentFiles\any\netstandard2.0\LICENSE" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://bn11v61p1fra"]
+
+[ext_resource type="Texture2D" uid="uid://cm1tx610rthvg" path="res://rsc/art/export/basic-enemy-walk-00.png" id="1_3dai5"]
+[ext_resource type="Script" uid="uid://hud5wcqokjgq" path="res://src/Entity/Enemy/Enemy.cs" id="1_yvb4i"]
+[ext_resource type="Texture2D" uid="uid://civqwamt5bhx" path="res://rsc/art/export/basic-enemy-walk-01.png" id="2_tbiab"]
+[ext_resource type="PackedScene" uid="uid://dcuxpv8w8krl7" path="res://src/attribute_component/AttributeComponent.tscn" id="3_tbiab"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gss2s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3dai5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tbiab")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a4ts7"]
+radius = 7.0
+height = 18.0
+
+[node name="BasicEnemy" type="PathFollow2D"]
+script = ExtResource("1_yvb4i")
+AttackDamage = 10.0
+Speed = 10.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_gss2s")
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+shape = SubResource("CapsuleShape2D_a4ts7")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_tbiab")]
+unique_name_in_owner = true
+Min = 0.0
+Value = 100.0
