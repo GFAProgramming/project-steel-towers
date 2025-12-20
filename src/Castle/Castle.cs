@@ -7,8 +7,6 @@ namespace SteelTowers.Castle;
 
 public partial class Castle: Node2D, IDamageable
 {
-	public static NodePath NODE_PATH = new NodePath();
-	
 	[Signal]
 	public delegate void OnDamageAppliedEventHandler();
 	
@@ -43,6 +41,6 @@ public partial class Castle: Node2D, IDamageable
 		}
 
 		EmitSignalOnDeath();
-		CallDeferred(Node.MethodName.QueueFree);
+		QueueFree();
 	}
 }
