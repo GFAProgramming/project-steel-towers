@@ -18,6 +18,31 @@ config/icon="res://icon.svg"
 
 project/assembly_name="steel-towers"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
+
+[gdunit4]
+
+settings/test/test_suite_naming_convention=2
+settings/test/test_discovery=true
+report/godot/push_error=true
+ui/inspector/tree_sort_mode=1
+templates/testsuite/CSharpScript="using Godot;
+using GdUnit4;
+
+using static Assertions;
+using static Utils;
+
+namespace ${name_space};
+
+[TestSuite]
+public class ${suite_class_name}
+{
+
+}
+"
+
 [input]
 
 left_action={
