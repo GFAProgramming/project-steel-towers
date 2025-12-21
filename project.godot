@@ -26,7 +26,6 @@ project/assembly_name="steel-towers"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 enabled=PackedStringArray("res://addons/plenticons/plugin.cfg")
 
 [gdunit4]

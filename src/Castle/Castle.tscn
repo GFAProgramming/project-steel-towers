@@ -1,18 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://cces7vvcwjmb4"]
 
 [ext_resource type="Script" uid="uid://dyphhrnj0brdv" path="res://src/Castle/Castle.cs" id="1_nr6ti"]
-[ext_resource type="PackedScene" uid="uid://dcuxpv8w8krl7" path="res://src/attribute_component/AttributeComponent.tscn" id="2_14h6m"]
+[ext_resource type="PackedScene" uid="uid://crfqkwxr6rjse" path="res://src/Systems/Combat/Components/HealthComponent.tscn" id="2_14h6m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_movuu"]
 
 [node name="Castle" type="Node2D"]
 script = ExtResource("1_nr6ti")
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_14h6m")]
-unique_name_in_owner = true
-Min = 0.0
-Value = 100.0
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_movuu")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_14h6m")]
+unique_name_in_owner = true
+MaxHealth = 100
+CurrentHealth = 100
