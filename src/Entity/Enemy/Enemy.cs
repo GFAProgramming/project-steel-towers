@@ -1,41 +1,33 @@
 using Godot;
-using JetBrains.Annotations;
-using SteelTowers.Attribute_Component;
+using SteelTowers.Systems.Combat.Components;
 using SteelTowers.Systems.Combat.Interfaces;
+using SteelTowers.Systems.Movement.Components;
+using SteelTowers.Systems.Movement.Interfaces;
 using SteelTowers.Toggles;
 using SteelTowers.Utilities;
 
 namespace SteelTowers.Entity.Enemy;
 
-public partial class Enemy: PathFollow2D, IDamageable {
-	[Signal] 
-	public delegate void OnDeathEventHandler();
+public partial class Enemy: PathFollow2D, IAttack, IHealth, IMovement {
+	public AnimatedSprite2D AnimatedSprite2D { get; private set; } = null!;
+	
+	public Area2D Area2D { get; private set; } = null!;
 
-	[Signal]
-	public delegate void OnDamageAppliedEventHandler();
-	
-	[NotNull]
-	public AnimatedSprite2D AnimatedSprite2D { get; private set; }
-	
-	[NotNull]
-	public Area2D Area2D { get; private set; }
-	
-	[NotNull]
-	public AttributeComponent HealthComponent { get; private set; }
+	public HealthComponent Health { get; private set; } = null!;
 
-	[Export] public float AttackDamage { get; private set; }
+	public AttackComponent Attack { get; private set; } = null!;
 
-	[Export]
-	public float Speed { get; private set; }
+	public MovementComponent Movement { get; private set; } = null!;
 	
-	[CanBeNull] 
-	private Castle.Castle _castle;
+	private Castle.Castle? _castle;
 
 	public override void _Ready()
 	{
 		AnimatedSprite2D = GetNode<AnimatedSprite2D>("%AnimatedSprite2D");
 		Area2D = GetNode<Area2D>("%Area2D");
-		HealthComponent = GetNode<AttributeComponent>("%HealthComponent");
+		Health = GetNode<HealthComponent>("%HealthComponent");
+		Attack = GetNode<AttackComponent>("%AttackComponent");
+		Movement = GetNode<MovementComponent>("%MovementComponent");
 
 		_castle = NodeUtilities.FindNodeByType<Castle.Castle>(GetTree().Root) as Castle.Castle;
 		Loop = false;
@@ -43,7 +35,7 @@ public partial class Enemy: PathFollow2D, IDamageable {
 
 	public override void _Process(double delta)
 	{
-		Progress += (float) (Speed * delta);
+		Movement.Move(delta);
 		
 		if (Path2DUtilities.IsAtEndOfPath2D(ProgressRatio))
 		{
@@ -53,7 +45,7 @@ public partial class Enemy: PathFollow2D, IDamageable {
 			}
 
 			DamageCastle();
-			Die();
+			Health.Damage(Health.MaxHealth);
 		}
 	}
 
@@ -64,28 +56,6 @@ public partial class Enemy: PathFollow2D, IDamageable {
 			GD.Print($"Damaging the castle {_castle}!");
 		}
 
-		_castle?.ApplyDamage(AttackDamage);
-	}
-
-	public void ApplyDamage(double amount)
-	{
-		HealthComponent.Value -= amount;
-		EmitSignalOnDamageApplied();
-		
-		if (HealthComponent.Value <= HealthComponent.Min)
-		{
-			Die();
-		}
-	}
-
-	private void Die()
-	{
-		if (DebugToggles.LogEntityDeaths)
-		{
-			GD.Print($"Enemy {Name} has died.");
-		}
-
-		EmitSignalOnDeath();
-		QueueFree();
+		Attack.Attack(_castle);
 	}
 }

@@ -14,4 +14,7 @@
   <ItemGroup>
     <Content Include=".runsettings" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="docs\" />
+  </ItemGroup>
 </Project>
