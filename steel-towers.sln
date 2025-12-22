@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "steel-towers", "steel-towers.csproj", "{F6910891-BC47-4A61-8E18-87E393B63387}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteelTowers", "SteelTowers.csproj", "{F6910891-BC47-4A61-8E18-87E393B63387}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
