@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cr7i618mek25e"]
+
+[ext_resource type="PackedScene" uid="uid://cxfapfbxhrhnu" path="res://src/Systems/Combat/Components/AttackComponent.tscn" id="1_co661"]
+[ext_resource type="Script" uid="uid://hud5wcqokjgq" path="res://src/Entity/Unit.cs" id="1_f3i4i"]
+[ext_resource type="PackedScene" uid="uid://crfqkwxr6rjse" path="res://src/Systems/Combat/Components/HealthComponent.tscn" id="2_f3i4i"]
+[ext_resource type="PackedScene" uid="uid://dhv7jgecyegtj" path="res://src/Systems/Movement/Components/MovementComponent.tscn" id="3_aewp4"]
+
+[node name="Unit" type="PathFollow2D"]
+script = ExtResource("1_f3i4i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="AttackComponent" parent="." instance=ExtResource("1_co661")]
+unique_name_in_owner = true
+Damage = 0
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_f3i4i")]
+unique_name_in_owner = true
+
+[node name="MovementComponent" parent="." instance=ExtResource("3_aewp4")]
+unique_name_in_owner = true
+Speed = 0.0

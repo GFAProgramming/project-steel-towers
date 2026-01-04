@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxfapfbxhrhnu"]
+
+[ext_resource type="Script" uid="uid://cwytnaqh30l7n" path="res://src/Systems/Combat/Components/AttackComponent.cs" id="1_co63i"]
+
+[node name="AttackComponent" type="Node"]
+script = ExtResource("1_co63i")
+Damage = 10

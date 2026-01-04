@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://5y2vk7ntpaxj"]
+
+[ext_resource type="PackedScene" uid="uid://cces7vvcwjmb4" path="res://src/Castle/Castle.tscn" id="1_kouaa"]
+[ext_resource type="PackedScene" uid="uid://tvpbifxqyfxd" path="res://src/Entity/Enemy/Enemies/AutoAttackEnemy.tscn" id="2_nxqyl"]
+
+[sub_resource type="Curve2D" id="Curve2D_2t6ru"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 753, 343, 0, 0, 0, 0, 1178, 344)
+}
+point_count = 2
+
+[node name="EnemyTest" type="Node"]
+
+[node name="Castle" parent="." instance=ExtResource("1_kouaa")]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_2t6ru")
+
+[node name="Unit" parent="Path2D" instance=ExtResource("2_nxqyl")]
+position = Vector2(753, 343)
+rotation = 0.002352937

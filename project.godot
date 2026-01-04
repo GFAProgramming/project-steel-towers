@@ -22,11 +22,11 @@ window/size/viewport_height=1080
 
 [dotnet]
 
-project/assembly_name="steel-towers"
+project/assembly_name="SteelTowers"
 
 [editor_plugins]
-enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
-enabled=PackedStringArray("res://addons/plenticons/plugin.cfg")
+
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg", "res://addons/plenticons/plugin.cfg")
 
 [gdunit4]
 
@@ -48,6 +48,7 @@ public class ${suite_class_name}
 
 }
 "
+settings/test/test_lookup_folder="Test"
 
 [input]
 

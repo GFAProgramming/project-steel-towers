@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://tvpbifxqyfxd"]
+
+[ext_resource type="PackedScene" uid="uid://rf1hseon48ps" path="res://src/Entity/Enemy/Enemy.tscn" id="1_a2d7y"]
+[ext_resource type="Script" uid="uid://bg6c3efwxx2pa" path="res://src/Systems/Combat/Components/AutoAttackComponent.cs" id="2_u1t8f"]
+
+[node name="Unit" instance=ExtResource("1_a2d7y")]
+
+[node name="AttackComponent" parent="." index="2"]
+script = ExtResource("2_u1t8f")

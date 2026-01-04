@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhv7jgecyegtj"]
+
+[ext_resource type="Script" uid="uid://6xqcvshqiaye" path="res://src/Systems/Movement/Components/MovementComponent.cs" id="1_xrevk"]
+
+[node name="MovementComponent" type="Node"]
+script = ExtResource("1_xrevk")
+Speed = 50.0

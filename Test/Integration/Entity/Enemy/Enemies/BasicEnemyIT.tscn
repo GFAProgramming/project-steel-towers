@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwnslg6bo154i"]
+
+[ext_resource type="PackedScene" uid="uid://cces7vvcwjmb4" path="res://src/Castle/Castle.tscn" id="1_pavrl"]
+[ext_resource type="PackedScene" uid="uid://wfw3m3sb6ykc" path="res://src/Entity/Enemy/Enemies/BasicEnemy.tscn" id="2_x0jgg"]
+
+[sub_resource type="Curve2D" id="Curve2D_2t6ru"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 753, 343, 0, 0, 0, 0, 1178, 344)
+}
+point_count = 2
+
+[node name="EnemyTest" type="Node"]
+
+[node name="Castle" parent="." instance=ExtResource("1_pavrl")]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_2t6ru")
+
+[node name="Unit" parent="Path2D" instance=ExtResource("2_x0jgg")]
+position = Vector2(753, 343)
+rotation = 0.002352937
