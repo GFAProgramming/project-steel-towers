@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bn11v61p1fra"]
+[gd_scene load_steps=9 format=3 uid="uid://bn11v61p1fra"]
 
 [ext_resource type="Texture2D" uid="uid://cm1tx610rthvg" path="res://rsc/art/export/basic-enemy-walk-00.png" id="1_3dai5"]
 [ext_resource type="Script" uid="uid://hud5wcqokjgq" path="res://src/Entity/Enemy/Enemy.cs" id="1_yvb4i"]
 [ext_resource type="Texture2D" uid="uid://civqwamt5bhx" path="res://rsc/art/export/basic-enemy-walk-01.png" id="2_tbiab"]
-[ext_resource type="PackedScene" uid="uid://dcuxpv8w8krl7" path="res://src/attribute_component/AttributeComponent.tscn" id="3_tbiab"]
+[ext_resource type="PackedScene" uid="uid://crfqkwxr6rjse" path="res://src/Systems/Combat/Components/HealthComponent.tscn" id="4_yvb4i"]
+[ext_resource type="PackedScene" uid="uid://dhv7jgecyegtj" path="res://src/Systems/Movement/Components/MovementComponent.tscn" id="5_5uumv"]
+[ext_resource type="PackedScene" uid="uid://cxfapfbxhrhnu" path="res://src/Systems/Combat/Components/AttackComponent.tscn" id="6_6s8or"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gss2s"]
 animations = [{
@@ -25,8 +27,6 @@ height = 18.0
 
 [node name="BasicEnemy" type="PathFollow2D"]
 script = ExtResource("1_yvb4i")
-AttackDamage = 10.0
-Speed = 10.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
@@ -39,7 +39,13 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 shape = SubResource("CapsuleShape2D_a4ts7")
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_tbiab")]
+[node name="HealthComponent" parent="." instance=ExtResource("4_yvb4i")]
 unique_name_in_owner = true
-Min = 0.0
-Value = 100.0
+MaxHealth = 100
+CurrentHealth = 100
+
+[node name="MovementComponent" parent="." instance=ExtResource("5_5uumv")]
+unique_name_in_owner = true
+
+[node name="AttackComponent" parent="." instance=ExtResource("6_6s8or")]
+unique_name_in_owner = true
